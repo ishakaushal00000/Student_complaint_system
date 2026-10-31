@@ -52,3 +52,23 @@ logs/
 /queries/
 /dataSources/
 /dataSources.local.xml
+
+# Compiled Java files
+*.class
+
+# Tomcat configuration and generated files
+/conf/
+catalina.policy
+catalina.properties
+context.xml
+createdFiles.lst
+inputFiles.lst
+jaspic-providers.*
+logging.properties
+server.xml
+tomcat-users.*
+compiler.xml
+misc.xml
+encodings.xml
+jarRepositories.xml
+workspace.xml
