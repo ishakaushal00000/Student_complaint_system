@@ -257,7 +257,42 @@ f<!DOCTYPE html>
                 padding: 16px;
             }
         }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .report-card {
+            background: #ffffff;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            min-width: 0;
+        }
+
+        .report-card h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+
+        .report-card canvas {
+            width: 100% !important;
+            max-height: 320px;
+        }
+
+        @media (max-width: 900px) {
+            .report-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
+
+    <link rel="stylesheet" href="css/theme.css">
 </head>
 
 <body>
@@ -389,10 +424,30 @@ f<!DOCTYPE html>
         </section>
 
         <section class="panel" id="reports">
-            <h2>Complaint Summary</h2>
+            <h2>📊 Complaint Reports</h2>
+
             <p id="reportText">
                 Complaint statistics will appear here.
             </p>
+
+            <div class="report-grid">
+
+                <div class="report-card">
+                    <h3>Complaint Status</h3>
+                    <canvas id="statusChart"></canvas>
+                </div>
+
+                <div class="report-card">
+                    <h3>Category-wise Complaints</h3>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+
+                <div class="report-card">
+                    <h3>Assigned Staff-wise Complaints</h3>
+                    <canvas id="staffChart"></canvas>
+                </div>
+
+            </div>
         </section>
 
     </main>
@@ -402,6 +457,7 @@ f<!DOCTYPE html>
     Smart Student Complaint Management System
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 
 
@@ -416,6 +472,10 @@ f<!DOCTYPE html>
     const table = document.getElementById("complaintTable");
     const message = document.getElementById("message");
     let complaints = [];
+
+    let statusChart = null;
+    let categoryChart = null;
+    let staffChart = null;
 
     async function loadComplaints() {
         try {
@@ -438,6 +498,99 @@ f<!DOCTYPE html>
         }
     }
 
+    function updateCharts() {
+        const statusLabels = ["Pending", "In Progress", "Resolved"];
+
+        const statusCounts = statusLabels.map(status =>
+            complaints.filter(c => c.status === status).length
+        );
+
+        const categoryLabels = [
+            "Electricity",
+            "Water",
+            "Transport",
+            "Academic",
+            "IT / Computer Lab",
+            "Hostel",
+            "Other"
+        ];
+
+        const categoryCounts = categoryLabels.map(category =>
+            complaints.filter(c => c.category === category).length
+        );
+
+        const staffLabels = [
+            "Not Assigned",
+            "Amit Sharma",
+            "Priya Verma",
+            "Rahul Singh",
+            "Neha Joshi"
+        ];
+
+        const staffCounts = staffLabels.map(staff =>
+            complaints.filter(c =>
+                !c.assignedStaff
+                    ? staff === "Not Assigned"
+                    : c.assignedStaff === staff
+            ).length
+        );
+
+        if (statusChart) {
+            statusChart.data.datasets[0].data = statusCounts;
+            statusChart.update();
+        } else {
+            statusChart = new Chart(document.getElementById("statusChart"), {
+                type: "pie",
+                data: {
+                    labels: statusLabels,
+                    datasets: [{ data: statusCounts }]
+                },
+                options: { responsive: true }
+            });
+        }
+
+        if (categoryChart) {
+            categoryChart.data.datasets[0].data = categoryCounts;
+            categoryChart.update();
+        } else {
+            categoryChart = new Chart(document.getElementById("categoryChart"), {
+                type: "bar",
+                data: {
+                    labels: categoryLabels,
+                    datasets: [{
+                        label: "Number of Complaints",
+                        data: categoryCounts
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+                }
+            });
+        }
+
+        if (staffChart) {
+            staffChart.data.datasets[0].data = staffCounts;
+            staffChart.update();
+        } else {
+            staffChart = new Chart(document.getElementById("staffChart"), {
+                type: "bar",
+                data: {
+                    labels: staffLabels,
+                    datasets: [{
+                        label: "Assigned Complaints",
+                        data: staffCounts
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+                }
+            });
+        }
+    }
+
+
     function updateStats(list) {
         const pending = list.filter(c => c.status === "Pending").length;
         const progress = list.filter(c => c.status === "In Progress").length;
@@ -456,6 +609,7 @@ f<!DOCTYPE html>
                 " | In Progress: " + progress +
                 " | Resolved: " + resolved;
         }
+        updateCharts();
     }
 
     function makeCell(row, value) {
@@ -621,6 +775,8 @@ f<!DOCTYPE html>
     loadComplaints();
 
 </script>
+
+<script src="js/theme.js"></script>
 
 </body>
 </html>

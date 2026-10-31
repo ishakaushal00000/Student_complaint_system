@@ -1,70 +1,704 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Student Complaint System</title>
 
+    <link rel="stylesheet" href="css/theme.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        .get-started-btn {
-            display: inline-block;
-            background: #1d4ed8;
-            color: white;
-            border: none;
-            padding: 12px 22px;
-            border-radius: 6px;
-            text-decoration: none;
-            cursor: pointer;
+        :root {
+            --home-bg: #08070b;
+            --home-card: rgba(24, 19, 32, 0.88);
+            --home-purple: #a855f7;
+            --home-purple-light: #c084fc;
+            --home-white: #faf8ff;
+            --home-muted: #c4bdce;
+            --home-border: rgba(168, 85, 247, 0.35);
         }
 
-        .get-started-btn:hover {
-            background: #1e40af;
+        * {
+            box-sizing: border-box;
         }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f1f5f9;
             margin: 0;
-            color: #1e293b;
+            min-height: 100vh;
+            font-family: 'Inter', Arial, sans-serif;
+            background:
+                    radial-gradient(ellipse at 5% 15%, rgba(126, 34, 206, 0.17), transparent 30%),
+                    radial-gradient(ellipse at 95% 70%, rgba(126, 34, 206, 0.16), transparent 30%),
+                    var(--home-bg);
+            color: var(--home-white);
+            overflow-x: hidden;
         }
 
-        header {
-            background: #1d4ed8;
+        a {
+            text-decoration: none;
+        }
+
+        /* NAVBAR */
+        .home-navbar {
+            min-height: 78px;
+            padding: 16px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            border-bottom: 1px solid var(--home-border);
+            background: rgba(8, 7, 11, 0.94);
+            position: relative;
+            z-index: 5;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            color: var(--home-white);
+            font-size: 21px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .brand-icon {
+            color: var(--home-purple-light);
+            font-size: 34px;
+            line-height: 1;
+        }
+
+        .brand span:last-child {
+            color: var(--home-purple-light);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .nav-links a {
+            padding: 11px 20px;
+            border-radius: 25px;
+            color: #e7e0ed;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #581c87;
             color: white;
-            padding: 25px;
-            text-align: center;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.18);
         }
 
-        main {
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 25px;
-            background: white;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        button {
-            background: #1d4ed8;
+        .home-theme-btn {
+            border: 1px solid #593575;
+            border-radius: 30px;
+            background: #17111f;
             color: white;
-            border: none;
-            padding: 12px 22px;
-            border-radius: 6px;
+            padding: 10px 15px;
+            font-weight: 600;
             cursor: pointer;
+            white-space: nowrap;
         }
+
+        .home-theme-btn:hover {
+            border-color: var(--home-purple-light);
+        }
+
+        /* HERO */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 24px 38px;
+            text-align: center;
+            position: relative;
+        }
+
+        .welcome-pill {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 1px solid var(--home-border);
+            border-radius: 30px;
+            background: rgba(30, 20, 40, 0.8);
+            color: #f1e5ff;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 0 22px rgba(168, 85, 247, 0.08);
+        }
+
+        .hero h1 {
+            max-width: 900px;
+            margin: 25px auto 14px;
+            font-size: clamp(34px, 5vw, 64px);
+            line-height: 1.12;
+            font-weight: 800;
+            letter-spacing: -1.8px;
+            color: #ffffff;
+        }
+
+        .hero h1 span {
+            display: block;
+            background: linear-gradient(90deg, #9333ea, #d8b4fe, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            margin: 0;
+            color: #cfc7d8;
+            font-size: clamp(16px, 2vw, 22px);
+        }
+
+        .hero-line {
+            width: 90px;
+            height: 4px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #9333ea, #d8b4fe);
+            margin: 24px auto 0;
+        }
+
+        /* ROLE CARDS */
+        .role-grid {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px 42px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .role-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 295px;
+            padding: 26px 22px 24px;
+            text-align: center;
+            border: 1px solid rgba(168, 85, 247, 0.48);
+            border-radius: 23px;
+            background:
+                    radial-gradient(circle at 0% 0%, rgba(147, 51, 234, 0.18), transparent 48%),
+                    linear-gradient(145deg, rgba(27, 21, 36, 0.98), rgba(13, 11, 18, 0.98));
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+            transition: transform 0.28s ease, border-color 0.28s ease,
+            box-shadow 0.28s ease;
+        }
+
+        .role-card::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 170px;
+            height: 170px;
+            right: -100px;
+            bottom: -110px;
+            border-radius: 50%;
+            background: rgba(147, 51, 234, 0.18);
+            filter: blur(25px);
+        }
+
+        .role-card:hover {
+            transform: translateY(-8px);
+            border-color: #c084fc;
+            box-shadow: 0 12px 35px rgba(147, 51, 234, 0.22);
+        }
+
+        .role-icon {
+            width: 86px;
+            height: 86px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid rgba(168, 85, 247, 0.55);
+            background: radial-gradient(circle at top, #42215c, #1b1325 78%);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.12);
+            font-size: 39px;
+        }
+
+        .role-card h2 {
+            color: white;
+            margin: 0 0 12px;
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .role-card p {
+            min-height: 43px;
+            margin: 0 0 19px;
+            color: #d0c7d9;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .login-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: min(190px, 100%);
+            padding: 13px 22px;
+            border-radius: 28px;
+            color: white;
+            background: linear-gradient(100deg, #7e22ce, #a855f7);
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(126, 34, 206, 0.22);
+            transition: 0.25s;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(100deg, #9333ea, #c084fc);
+            box-shadow: 0 5px 25px rgba(168, 85, 247, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 25px 24px;
+            border-top: 1px solid rgba(168, 85, 247, 0.17);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.17);
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 8px 18px;
+        }
+
+        .feature + .feature {
+            border-left: 1px solid rgba(168, 85, 247, 0.45);
+        }
+
+        .feature-icon {
+            font-size: 31px;
+            color: #c084fc;
+        }
+
+        .feature h3 {
+            margin: 0 0 5px;
+            color: #f8f4ff;
+            font-size: 15px;
+        }
+
+        .feature p {
+            margin: 0;
+            color: #bdb4c8;
+            font-size: 12px;
+        }
+
+        /* FOOTER */
+        .home-footer {
+            text-align: center;
+            padding: 24px 15px;
+            color: #bdb4c8;
+            font-size: 13px;
+        }
+
+        .home-footer span {
+            color: #c084fc;
+        }
+
+        /* LIGHT MODE */
+        html[data-theme="light"] body {
+            --home-bg: #f7f3fc;
+            --home-card: #ffffff;
+            --home-white: #251832;
+            --home-muted: #65556f;
+            --home-border: rgba(126, 34, 206, 0.25);
+            background: #f7f3fc;
+            color: #251832;
+        }
+
+        html[data-theme="light"] .home-navbar {
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        html[data-theme="light"] .brand,
+        html[data-theme="light"] .nav-links a,
+        html[data-theme="light"] .hero h1,
+        html[data-theme="light"] .role-card h2,
+        html[data-theme="light"] .feature h3 {
+            color: #251832;
+        }
+
+        html[data-theme="light"] .nav-links a:hover,
+        html[data-theme="light"] .nav-links a.active {
+            color: white;
+        }
+
+        html[data-theme="light"] .home-theme-btn {
+            background: #ffffff;
+            color: #251832;
+        }
+
+        html[data-theme="light"] .welcome-pill {
+            background: #ffffff;
+            color: #542477;
+        }
+
+        html[data-theme="light"] .hero-subtitle,
+        html[data-theme="light"] .feature p,
+        html[data-theme="light"] .home-footer {
+            color: #65556f;
+        }
+
+        html[data-theme="light"] .role-card {
+            background: linear-gradient(145deg, #ffffff, #f6efff);
+            border-color: #dfc4f7;
+        }
+
+        html[data-theme="light"] .role-card p {
+            color: #65556f;
+        }
+
+        html[data-theme="light"] .role-icon {
+            background: #f0e1ff;
+        }
+
+        html[data-theme="light"] .feature h3 {
+            color: #352044;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 850px) {
+            .home-navbar {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .brand {
+                width: 100%;
+                justify-content: center;
+                font-size: 18px;
+            }
+
+            .role-grid {
+                grid-template-columns: 1fr;
+                max-width: 470px;
+            }
+
+            .role-card {
+                min-height: auto;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                max-width: 470px;
+                gap: 10px;
+            }
+
+            .feature + .feature {
+                border-left: none;
+                border-top: 1px solid rgba(168, 85, 247, 0.25);
+                padding-top: 18px;
+            }
+
+            .feature {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home-navbar {
+                padding: 16px 12px;
+                gap: 12px;
+            }
+
+            .nav-links {
+                gap: 0;
+            }
+
+            .nav-links a {
+                padding: 9px 11px;
+                font-size: 13px;
+            }
+
+            .home-theme-btn {
+                font-size: 12px;
+                padding: 9px 11px;
+            }
+
+            .hero {
+                padding-top: 38px;
+            }
+
+            .hero h1 {
+                letter-spacing: -0.8px;
+            }
+
+            .role-grid {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+        }
+
+        /* ===== COMPACT HOMEPAGE: FIT LAPTOP SCREEN ===== */
+
+        .home-navbar {
+            min-height: 70;
+            padding: 12px 4%;
+        }
+
+        .brand {
+            font-size: 19px;
+            gap: 9px;
+        }
+
+        .brand-icon {
+            font-size: 30px;
+        }
+
+        .nav-links a {
+            padding: 9px 15px;
+            font-size: 14px;
+        }
+
+        .hero {
+            padding: 28px 20px 23px;
+        }
+
+        .welcome-pill {
+            padding: 8px 21px;
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            margin: 17px auto 11px;
+            font-size: clamp(32px, 3.8vw, 50px);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+        }
+
+        .hero-line {
+            margin-top: 18px;
+            width: 75px;
+        }
+
+        .role-grid {
+            max-width: 1060px;
+            gap: 24px;
+            padding: 0 24px 28px;
+        }
+
+        .role-card {
+            min-height: 250px;
+            padding: 22px 19px 19px;
+            border-radius: 20px;
+        }
+
+        .role-icon {
+            width: 72px;
+            height: 72px;
+            font-size: 33px;
+            margin-bottom: 12px;
+        }
+
+        .role-card h2 {
+            font-size: 24px;
+            margin-bottom: 9px;
+        }
+
+        .role-card p {
+            min-height: 39px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .login-btn {
+            width: 170px;
+            padding: 11px 19px;
+            font-size: 14px;
+        }
+
+        .features {
+            max-width: 950px;
+            padding: 19px 20px;
+        }
+
+        .feature-icon {
+            font-size: 28px;
+        }
+
+        .feature h3 {
+            font-size: 14px;
+        }
+
+        .feature p {
+            font-size: 12px;
+        }
+
+        .home-footer {
+            padding: 17px 12px;
+            font-size: 13px;
+        }
+        /* Short laptop screens */
+        @media (min-width: 851px) and (max-height: 800px) {
+            .hero {
+                padding-top: 18px;
+                padding-bottom: 14px;
+            }
+
+            .hero h1 {
+                font-size: clamp(28px, 3vw, 40px);
+                margin-top: 12px;
+            }
+
+            .role-card {
+                min-height: 210px;
+                padding-top: 15px;
+                padding-bottom: 13px;
+            }
+
+            .role-icon {
+                width: 57px;
+                height: 57px;
+                font-size: 26px;
+                margin-bottom: 8px;
+            }
+
+            .role-card p {
+                margin-bottom: 9px;
+            }
+
+            .features {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+
+            .home-footer {
+                padding-top: 11px;
+                padding-bottom: 11px;
+            }
+        }
+
     </style>
 </head>
 
 <body>
-<header>
-    <h1>Smart Student Complaint System</h1>
-    <p>Your campus issues, tracked in one place.</p>
+
+<header class="home-navbar">
+    <a href="index.html" class="brand">
+        <span class="brand-icon">🎓</span>
+        <span>Student Complaint <span>System</span></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="#features">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+
 </header>
 
 <main>
-    <h2>Welcome to the Complaint Portal</h2>
-    <p>Submit complaints and track their resolution status.</p>
-    <a href="roles.html" class="get-started-btn">Get Started</a>
+    <section class="hero">
+        <div class="welcome-pill">Welcome to</div>
+
+        <h1>
+            Student Complaint
+            <span>Management System</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            Your Voice Matters – We're Here to Listen!
+        </p>
+
+        <div class="hero-line"></div>
+    </section>
+
+    <section class="role-grid" aria-label="Choose your role">
+
+        <article class="role-card">
+            <div class="role-icon" aria-hidden="true">🎓</div>
+            <h2>Student</h2>
+            <p>Raise a Complaint &amp;<br>Track Your Status</p>
+            <a href="student_login.html" class="login-btn">
+                Login <span aria-hidden="true">→</span>
+            </a>
+        </article>
+
+        <article class="role-card">
+            <div class="role-icon" aria-hidden="true">⚙️</div>
+            <h2>Admin</h2>
+            <p>Manage Complaints &amp;<br>Assign to Staff</p>
+            <a href="admin_login.html" class="login-btn">
+                Login <span aria-hidden="true">→</span>
+            </a>
+        </article>
+
+        <article class="role-card">
+            <div class="role-icon" aria-hidden="true">👥</div>
+            <h2>HOD</h2>
+            <p>Review &amp; Resolve<br>Complaints</p>
+            <a href="HOD_login.html" class="login-btn">
+                Login <span aria-hidden="true">→</span>
+            </a>
+        </article>
+        ```
+
+    </section>
+
+    <section class="features" id="features" aria-label="System benefits">
+
+        <div class="feature">
+            <div class="feature-icon" aria-hidden="true">🛡️</div>
+            <div>
+                <h3>Transparent</h3>
+                <p>Track Every Request</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon" aria-hidden="true">⚡</div>
+            <div>
+                <h3>Efficient</h3>
+                <p>Get Quick Support</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon" aria-hidden="true">📊</div>
+            <div>
+                <h3>Reliable</h3>
+                <p>A Better College Experience</p>
+            </div>
+        </div>
+
+    </section>
 </main>
+
+<footer class="home-footer" id="contact">
+    Student Complaint Management System <span>© 2026</span>
+</footer>
+
+<script src="js/theme.js"></script>
+
+
+
+
+</script>
+
 </body>
 </html>

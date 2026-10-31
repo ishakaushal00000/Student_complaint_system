@@ -1,0 +1,196 @@
+/* ===== LIGHT MODE ===== */
+:root {
+    color-scheme: light;
+
+    --bg-color: #f7f5fa;
+    --card-color: #ffffff;
+    --text-color: #24202b;
+    --muted-text: #777180;
+    --border-color: #e5dfee;
+    --input-color: #ffffff;
+    --table-header: #f0eafa;
+    --hover-color: #f5efff;
+
+    --accent-color: #8b5cf6;
+    --accent-hover: #7c3aed;
+    --shadow-color: rgba(35, 15, 65, 0.08);
+}
+
+/* ===== BLACK + PURPLE DARK MODE ===== */
+html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg-color: #0a090d;
+    --card-color: #141218;
+    --text-color: #f5f3f7;
+    --muted-text: #b5aebd;
+    --border-color: #302638;
+    --input-color: #100e14;
+    --table-header: #21182b;
+    --hover-color: #21182b;
+
+    --accent-color: #a855f7;
+    --accent-hover: #9333ea;
+    --shadow-color: rgba(0, 0, 0, 0.35);
+}
+
+/* ===== GENERAL PAGE ===== */
+html,
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ===== COMMON CONTAINERS ===== */
+header,
+nav,
+main,
+section,
+article,
+aside,
+footer,
+.panel,
+.card,
+.dashboard-card,
+.stat-card,
+.report-card {
+    color: var(--text-color);
+}
+
+.panel,
+.card,
+.dashboard-card,
+.stat-card,
+.report-card {
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 16px var(--shadow-color);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ===== FORMS ===== */
+input,
+select,
+textarea {
+    background-color: var(--input-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--muted-text);
+}
+
+/* ===== TABLES ===== */
+table {
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+th {
+    background-color: var(--table-header);
+    color: var(--text-color);
+}
+
+td,
+th {
+    border-color: var(--border-color);
+}
+
+tr:hover {
+    background-color: var(--hover-color);
+}
+
+/* ===== LINKS ===== */
+a {
+    color: var(--accent-color);
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+/* ===== BUTTONS ===== */
+button {
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 85px;
+    right: 20px;
+    z-index: 9999;
+
+    padding: 10px 16px;
+    border: 1px solid var(--accent-color);
+    border-radius: 24px;
+
+    background-color: var(--card-color);
+    color: var(--text-color);
+
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+
+    box-shadow: 0 4px 14px var(--shadow-color);
+}
+
+.theme-toggle:hover {
+    background-color: var(--accent-color);
+    color: #ffffff;
+}
+
+/* ===== FOCUS EFFECT ===== */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 1px;
+}
+
+/* ===== REPORT CHART CARDS ===== */
+.report-card h3 {
+    color: var(--text-color);
+}
+
+/* ===== SMOOTH THEME CHANGE ===== */
+body,
+.panel,
+.card,
+.dashboard-card,
+.stat-card,
+.report-card,
+input,
+select,
+textarea,
+table,
+th,
+td {
+    transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+}
+/* ===== BLACK SIDEBAR ===== */
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] aside,
+html[data-theme="dark"] .sidebar-panel {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border-right: 1px solid #302638;
+}
+
+/* Sidebar links */
+html[data-theme="dark"] .sidebar a,
+html[data-theme="dark"] aside a,
+html[data-theme="dark"] .sidebar-panel a {
+    color: #e9d5ff !important;
+}
+
+/* Sidebar hover */
+html[data-theme="dark"] .sidebar a:hover,
+html[data-theme="dark"] aside a:hover,
+html[data-theme="dark"] .sidebar-panel a:hover {
+    background: #21182b !important;
+    color: #c084fc !important;
+}
