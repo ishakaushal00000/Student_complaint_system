@@ -1,4 +1,4 @@
-# Smart Student Complaint Management System
+# Student Complaint Management System
 
 ##  Project Overview
 The Smart Student Complaint Management System is a Java-based web application designed to help students submit complaints and track their resolution. It provides separate interfaces for Students, Administrators, and Heads of Department (HODs) to support complaint management.
