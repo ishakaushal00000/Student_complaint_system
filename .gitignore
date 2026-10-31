@@ -5,6 +5,7 @@ target/
 .kotlin
 
 ### IntelliJ IDEA ###
+.idea/
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
@@ -38,9 +39,16 @@ build/
 ### Mac OS ###
 .DS_Store
 
-.idea/
+### Project-specific files ###
 .smarttomcat/
-target/
 logs/
 .env
 *.log
+
+### GitHub existing settings ###
+/shelf/
+/workspace.xml
+/httpRequests/
+/queries/
+/dataSources/
+/dataSources.local.xml

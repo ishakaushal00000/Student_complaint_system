@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Select Role | Smart Student Complaint System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            color: #1e293b;
+        }
+
+        header {
+            background: #1d4ed8;
+            color: white;
+            padding: 22px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin-bottom: 0;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 55px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .role-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+        }
+
+        .role-card {
+            background: white;
+            width: 280px;
+            padding: 30px 22px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .role-icon {
+            font-size: 45px;
+        }
+
+        .role-card h3 {
+            color: #1d4ed8;
+            margin-top: 15px;
+        }
+
+        .role-card p {
+            color: #64748b;
+            line-height: 1.6;
+            min-height: 50px;
+        }
+
+        .login-btn {
+            display: inline-block;
+            background: #1d4ed8;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 7px;
+            text-decoration: none;
+            margin-top: 12px;
+            width: 100%;
+        }
+
+        .login-btn:hover {
+            background: #1e40af;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 35px;
+            color: #1d4ed8;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            .role-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Smart Student Complaint System</h1>
+    <p>Your campus issues, tracked in one place.</p>
+</header>
+
+<main>
+    <h2>Select Your Role</h2>
+    <p>Please select your role to continue to the login page.</p>
+
+    <div class="role-container">
+
+        <div class="role-card">
+            <div class="role-icon">🎓</div>
+            <h3>Student</h3>
+            <p>Submit complaints, view your complaints and track their resolution status.</p>
+            <a href="student_login.html" class="login-btn">
+                Student Login
+            </a>
+        </div>
+
+        <div class="role-card">
+            <div class="role-icon">🛡️</div>
+            <h3>Admin</h3>
+            <p>Manage complaints, assign staff and monitor the complaint management process.</p>
+            <a href="admin_login.html" class="login-btn">
+                Admin Login
+            </a>
+        </div>
+
+        <div class="role-card">
+            <div class="role-icon">👨‍🏫</div>
+            <h3>HOD</h3>
+            <p>Monitor department complaints, review progress and track complaint resolution.</p>
+            <a href="HOD_login.html" class="login-btn">
+                HOD Login
+            </a>
+        </div>
+
+    </div>
+
+    <a href="index.html" class="home-link">← Back to Home</a>
+</main>
+
+<footer>
+    Smart Student Complaint Management System
+</footer>
+
+</body>
+</html>
+```
